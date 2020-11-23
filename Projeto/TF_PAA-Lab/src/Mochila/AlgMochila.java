@@ -5,12 +5,15 @@ import java.util.List;
 
 public class AlgMochila {
 
-    public void forcaBruta(int capacidade, List <app.Produto> produtos, int posicaoLista, List <Object> mochila){
+    AlgMochila(){
+
+    }
+
+    public List forcaBruta(int capacidade, List <app.Produto> produtos, List <Object> combNova, int posicaoLista, List <Object> mochila){
         app.Produto aux = new app.Produto();
 
-        //A lista comparativa serve para comparar a nova combinacao com os itens da mochila
-        //A ultima posicao das listas comparativa e mochila equivale ao valor das combinacoes
-        List <Object> comparativa = new ArrayList<Object>();
+        //A lista combNova serve para comparar a nova combinacao com os itens da mochila
+        //A ultima posicao das listas combNova e mochila equivale ao valor das combinacoes
 
         //Recebe primeiro produto para realizar combinacoes
         if(posicaoLista<capacidade){
@@ -23,7 +26,7 @@ public class AlgMochila {
         mochila.add(produtos.get(posicaoLista));
 
         //Variavel utilizada para percorrer a lista durante a formacao de combinacoes e nao perder a posicao
-        // do objeto utilizado para ealizar as comparacoes
+        // do objeto referencia utilizado para ralizar as combinacoes
         int pos = posicaoLista+1;
 
         int somaPeso = aux.getPeso();
@@ -39,19 +42,37 @@ public class AlgMochila {
                 controlaPeso = 1;
 
                 //Como nao ocorrera mais comparacoes, o valor final da comparacao é gravado no final da lista.
-                comparativa.add(somaValor);
+                combNova.add(somaValor);
             }else{
                 //Adiciona na lista comparativa o objeto incluido na mochila.
-                comparativa.add(produtos.get(pos));
+                combNova.add(produtos.get(pos));
+
                 //Incrementa o valor total da mochila.
                 somaValor += produtos.get(pos).getValor();
             }
 
         }
 
+        //Mudanca do objeto referencia
         if(produtos.get(pos)==null){
             posicaoLista++;
         }
 
+        float valorMochila = (float) mochila.get(mochila.size()-1);
+        float valorCombNova = (float) combNova.get(combNova.size()-1);
+
+        //Caso a nova combinacao tenha valha mais que a combinacao na mochila, a mochila recebe combnoVA
+        if( valorMochila < valorCombNova ){
+            mochila = combNova;
+            combNova.clear();
+        }
+
+        if(posicaoLista==produtos.size()-1){
+            //Caso a lista de produtos já tenha sido toda analisada, retorna a combinacao formda.
+            return mochila;
+        }else{
+
+            return forcaBruta(capacidade, produtos, combNova, posicaoLista, mochila);
+        }
     }
 }

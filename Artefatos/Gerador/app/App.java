@@ -38,7 +38,7 @@ public class App {
 
     static Random sorteio = new Random(42);
 
-    static List<Point> geraPontos(int quantPontos){
+    public List<Point> geraPontos(int quantPontos){
         List<Point> pontos = new ArrayList<Point>(quantPontos);
         for(int i=0; i<quantPontos; i++){
             pontos.add(new Point(sorteio.nextInt(TOTALPONTOS), sorteio.nextInt(TOTALPONTOS)));
@@ -55,7 +55,7 @@ public class App {
 
     //#region Produtos (mochila + supermercado)
     static final int QUANTPROD = 50;
-    static List<app.Produto> geraProduto(int tam){
+    public static List<app.Produto> geraProduto(int tam){
         ArrayList<app.Produto> prod = new ArrayList<app.Produto>(tam);
         for(int i=0; i<tam; i++){
             app.Produto novo = new app.Produto();
@@ -69,7 +69,7 @@ public class App {
     //calcula o peso médio dos produtos 
     //gera a capacidade como proporção do peso médio
     static final float PROPORCAOCAPACIDADE = 6.5f;
-    static int criarCapacidade(List<app.Produto> lista, float proporcao){
+    public static int criarCapacidade(List<app.Produto> lista, float proporcao){
         int pesoTotal = lista.stream().mapToInt(p -> p.getPeso()).sum();
         int quantTotal = lista.size();
         float media = (float)pesoTotal/quantTotal;
@@ -82,7 +82,7 @@ public class App {
     //calcula o valor médio dos produtos 
     //gera o orçamento como proporção do valor médio
     static final float PROPORCAOORCAMENTO = 13.5f;
-    static double criarOrcamento(List<app.Produto> lista, float proporcao){
+    public double criarOrcamento(List<app.Produto> lista, float proporcao){
         double valorTotal = lista.stream().mapToDouble(p -> p.getValor()).sum();
         int quantTotal = lista.size();
         double media = valorTotal/quantTotal;
@@ -93,7 +93,7 @@ public class App {
 
     //#region Auditório
     static final int PROPORCAOEVENTOS = 50;
-    static List<app.Evento> geraEventos(int proporcao){
+    public List<app.Evento> geraEventos(int proporcao){
         int quantEventos = proporcao * app.Evento.HORAMAX/ app.Evento.DURACAOMAX;
         ArrayList<app.Evento> eventos = new ArrayList<app.Evento>(quantEventos);
         for(int i=0; i<quantEventos; i++){
@@ -104,10 +104,10 @@ public class App {
     }
     //#endregion
 
-    public static void main(String[] args) throws Exception {
-        app.Mapa teste = new app.Mapa(10);
-
-        System.out.println(teste);
-        System.out.println();
-    }
+//    public static void main(String[] args) throws Exception {
+//        app.Mapa teste = new app.Mapa(10);
+//
+//        System.out.println(teste);
+//        System.out.println();
+//    }
 }
