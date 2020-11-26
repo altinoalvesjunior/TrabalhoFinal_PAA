@@ -60,11 +60,14 @@ public class AlgMochila {
             posNavegacao++;
 
         }
+        if(posReferencia==produtos.size()-1){
+            combNova.add(somaValor);
+        }
 
         //Mudanca do objeto referencia caso todo o vetor já tenha sido percorrido e comparado com o objeto referencia.
         if(posNavegacao==produtos.size()){
             posReferencia++;
-            posNavegacao = posReferencia;
+            posNavegacao = posReferencia+1;
         }
 
         float valorMochila;
@@ -79,9 +82,12 @@ public class AlgMochila {
 
         float valorCombNova = (float) combNova.get(combNova.size()-1);
 
-        //Caso a nova combinacao valha mais que a combinacao na mochila, a mochila recebe combnoVA
+        //Caso a nova combinacao valha mais que a combinacao na mochila, a mochila recebe combNova
         if( valorMochila < valorCombNova ){
+            mochila.clear();
             mochila.addAll(0, combNova);
+            combNova.clear();
+        }else{
             combNova.clear();
         }
 
