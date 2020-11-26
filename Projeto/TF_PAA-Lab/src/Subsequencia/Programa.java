@@ -8,7 +8,7 @@ public class Programa {
     static final int acima = 2;
     static final int anterior = 3;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int op;
