@@ -16,8 +16,8 @@ public class Programa {
         System.out.print("Digite a primeira palavra: ");
         String palavra2 = sc.nextLine().toUpperCase();
 
+        System.out.print("\nA subsequência é: ");
         System.out.print("\nO tamanho da subsequência é: " + encontraSubsequencia(palavra1, palavra2) + "\n");
-        //System.out.print("A subsequência é: " + imprimeSubsequencia(palavra1, palavra2); + "\n");
 
         sc.close();
     }
@@ -61,6 +61,7 @@ public class Programa {
             } //fecha for j
         } // fecha for i
 
+        imprimeSubsequencia(aux, palavra1, palavra1.length(), palavra2.length());
         return mat[m-1][n-1];
     }
 
