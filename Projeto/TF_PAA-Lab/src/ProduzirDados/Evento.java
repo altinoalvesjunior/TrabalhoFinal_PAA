@@ -1,3 +1,5 @@
+package ProduzirDados;
+
 import java.util.Random;
 
 public class Evento {

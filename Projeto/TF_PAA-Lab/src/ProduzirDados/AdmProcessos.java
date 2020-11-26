@@ -1,9 +1,12 @@
+package ProduzirDados;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class AdmProcessos {
+
 
     //#region Par de pontos
 
@@ -29,7 +32,7 @@ public class AdmProcessos {
 
     //#region Produtos (mochila + supermercado)
     static final int QUANTPROD = 50;
-    static java.util.List<Produto> geraProduto(int tam){
+    public static java.util.List<Produto> geraProduto(int tam){
         ArrayList<Produto> prod = new ArrayList<Produto>(tam);
         for(int i=0; i<tam; i++){
             Produto novo = new Produto();
@@ -43,8 +46,8 @@ public class AdmProcessos {
     //calcula o peso médio dos produtos
     //gera a capacidade como proporção do peso médio
     static final float PROPORCAOCAPACIDADE = 6.5f;
-    static int criarCapacidade(java.util.List<Produto> lista, float proporcao){
-        int pesoTotal = lista.stream().mapToInt(p -> p.peso).sum();
+    public static int criarCapacidade(java.util.List<Produto> lista, float proporcao){
+        int pesoTotal = lista.stream().mapToInt(p -> p.getPeso()).sum();
         int quantTotal = lista.size();
         float media = (float)pesoTotal/quantTotal;
 
@@ -57,7 +60,7 @@ public class AdmProcessos {
     //gera o orçamento como proporção do valor médio
     static final float PROPORCAOORCAMENTO = 13.5f;
     static double criarOrcamento(java.util.List<Produto> lista, float proporcao){
-        double valorTotal = lista.stream().mapToDouble(p -> p.valor).sum();
+        double valorTotal = lista.stream().mapToDouble(p -> p.getValor()).sum();
         int quantTotal = lista.size();
         double media = valorTotal/quantTotal;
 
@@ -75,13 +78,5 @@ public class AdmProcessos {
             eventos.add(novo);
         }
         return eventos;
-    }
-    //#endregion
-
-    public static void main(String[] args) throws Exception {
-        Mapa teste = new Mapa(10);
-
-        System.out.println(teste);
-        System.out.println();
     }
 }
