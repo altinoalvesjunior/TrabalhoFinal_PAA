@@ -24,15 +24,8 @@ public class Produto {
         return peso;
     }
 
-    public void setPeso(int peso) {
-        this.peso = peso;
-    }
-
     public float getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
 }

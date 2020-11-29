@@ -64,7 +64,7 @@ public class Programa {
                     }
 
                     else {
-                        //Caso contrário pega o elemento da coluna anterior(ANTERIOR)
+                        //Caso contrário pega o elemento da coluna anterior (ANTERIOR)
                         mat[i][j] = mat[i][j - 1];
                         aux[i][j] = anterior;
                     }

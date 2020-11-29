@@ -3,6 +3,7 @@ package Mochila;
 import ProduzirDados.Produto;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AlgMochila {
@@ -103,4 +104,40 @@ public class AlgMochila {
     public boolean mochilaVazia(List <Object> mochila){
         return mochila.isEmpty();
     }
+
+    public List guloso(int capacidade, List<Produto> produtos) {
+
+        // mochila final
+        List<Object> mochila = new ArrayList<>(); // Só irá receber os produtos definitivos
+        List<Produto> aux = produtos; // criando uma lista auxilar (cópia da lista oficial de produtos) para poder sofrer alterações
+
+        Produto maiorValor; // armazena o produto que armazena o maior valor no momento
+        Produto temp = new Produto();
+        int pesoMochila = 0;
+        float valorMochila = 0;
+
+        while (pesoMochila < capacidade && aux.size() >= 0) {
+            maiorValor = aux.get(0);
+
+            for (int i = 0; i < aux.size(); i++) {
+                temp = aux.get(i);
+
+                if (temp.getValor() > maiorValor.getValor()) {
+                    maiorValor = temp;
+                }
+            }
+
+            pesoMochila += maiorValor.getPeso();
+            aux.remove(maiorValor);
+
+            if (pesoMochila < capacidade) {
+                mochila.add(maiorValor);
+                valorMochila += maiorValor.getValor();
+            }
+        }
+
+        mochila.add(valorMochila);
+        return mochila;
+    }
+
 }

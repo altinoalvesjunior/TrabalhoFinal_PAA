@@ -12,12 +12,13 @@ public class MainMochila {
         AlgMochila alg = new AlgMochila();
         AdmProcessos admDados = new AdmProcessos();
 
-        List<Produto> produtos = admDados.geraProduto(20);
+        List<Produto> produtos = admDados.geraProduto(10);
         int capacidade = admDados.criarCapacidade(produtos,8);
         List<Object> combNova = new ArrayList<>();
         List<Object> bag = new ArrayList<>();
 
-        List<Object> mochila  = alg.forcaBruta(capacidade, produtos, combNova, 0, 1, bag);
+        //List<Object> mochila  = alg.forcaBruta(capacidade, produtos, combNova, 0, 1, bag);
+        List<Object> mochila  = alg.guloso(capacidade, produtos);
 
         for(int i=0; i< mochila.size()-1; i++){
             Produto produto = (Produto) mochila.get(i);
