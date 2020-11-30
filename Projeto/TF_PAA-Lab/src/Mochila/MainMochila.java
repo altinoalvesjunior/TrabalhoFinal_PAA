@@ -16,7 +16,6 @@ public class MainMochila {
         int capacidade = admDados.criarCapacidade(produtos,8);
         List<Object> combNova = new ArrayList<>();
         List<Object> bag = new ArrayList<>();
-
         //List<Object> mochila  = alg.forcaBruta(capacidade, produtos, combNova, 0, 1, bag);
         List<Object> mochila  = alg.guloso(capacidade, produtos);
 

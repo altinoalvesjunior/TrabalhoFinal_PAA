@@ -4,6 +4,7 @@ import ProduzirDados.Produto;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class AlgMochila {
@@ -106,7 +107,6 @@ public class AlgMochila {
     }
 
     public List guloso(int capacidade, List<Produto> produtos) {
-
         // mochila final
         List<Object> mochila = new ArrayList<>(); // Só irá receber os produtos definitivos
         List<Produto> aux = produtos; // criando uma lista auxilar (cópia da lista oficial de produtos) para poder sofrer alterações
@@ -138,6 +138,82 @@ public class AlgMochila {
 
         mochila.add(valorMochila);
         return mochila;
+    }
+
+    public List programacaoDinamica(int capacidade, List<Produto> produtos) {
+        List<Integer> pesosOrdenados = pesosExistentes(produtos, capacidade);
+
+        int linha = produtos.size();
+        int coluna = pesosOrdenados.size();
+
+        // tabela que será preenchida
+        Object[][] matriz = new Object[linha + 1][coluna];
+
+        // inicializando a primeira linha e primeira coluna com 0
+        for (int j = 0; j < coluna; j++) {
+            List<Object> mochila = new ArrayList<>();
+            mochila.add(0);
+            matriz[0][j] = mochila;
+        }
+
+        for (int i = 1; i <= linha; i++) {
+            List<Object> mochila = new ArrayList<>();
+            mochila.add(0);
+            matriz[i][0] = 0;
+        }
+
+        Produto aux;
+
+       for (int i = 1; i <= linha; i++) {
+            for (int j = 1; j <= coluna; j++) {
+                aux = produtos.get(i);
+
+                List<Object> temp = (List<Object>) matriz[i-1][j-1];
+                float valorMochila = (float) temp.get(temp.size() - 1);
+
+                if (aux.getPeso() <= pesosOrdenados.get(i)) {
+                    if (aux.getPeso() == pesosOrdenados.get(i)) {
+                        if (aux.getValor() > valorMochila) {
+                            matriz[i][j] =
+                        }
+                    }
+                } else (aux.getValor() > valorMochila) {
+                    matriz[i][j] = temp;
+                }
+
+                /*if (pesos[i - 1] <= j) {
+                    // max...
+                    if ((valores[i - 1] + matriz[i - 1][j - pesos[i - 1]]) > matriz[i - 1][j]) {
+                        matriz[i][j] = valores[i - 1] + matriz[i - 1][j - pesos[i - 1]];
+                    } else {
+                        matriz[i][j] = matriz[i - 1][j];
+                    }
+                } else {
+                    matriz[i][j] = matriz[i - 1][j]; // wi > j
+                }*/
+
+            }
+        }
+        // retorna o valor máximo colocado na mochila
+        return pesosOrdenados;
+
+    }
+
+    private List pesosExistentes (List<Produto> produtos, int capacidade){
+        List<Integer> lista = new ArrayList<>();
+        Produto aux;
+
+        for (int i = 0; i < produtos.size(); i++) {
+            aux = produtos.get(i);
+
+            if (!(lista.contains(aux.getPeso()))) {
+                lista.add(aux.getPeso());
+            }
+        }
+
+        lista.add(capacidade);
+        Collections.sort(lista);
+        return lista;
     }
 
 }
