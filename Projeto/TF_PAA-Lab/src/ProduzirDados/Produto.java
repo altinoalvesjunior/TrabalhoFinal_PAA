@@ -3,15 +3,15 @@ package ProduzirDados;
 import java.util.Random;
 
 public class Produto {
-    static Random sorteio = new Random(42);                  //--> fixo
-    //static Random sorteio = new Random(System.nanoTime());   --> aleatório
+//    static Random sorteio = new Random(42);                  //--> fixo
+    static Random sorteio = new Random(System.nanoTime());   //--> aleatório
     static final int PESOMAX = 50;
     static final float VALMAX = 40f;
     private int peso;
     private float valor;
 
-    public Produto(){
-        this.peso = 1+sorteio.nextInt(PESOMAX);
+    public Produto(int peso){
+        this.peso = peso;
         this.valor = (float)(peso*2+sorteio.nextDouble()*VALMAX) ;
     }
 

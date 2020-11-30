@@ -34,9 +34,11 @@ public class AdmProcessos {
     static final int QUANTPROD = 50;
     public static java.util.List<Produto> geraProduto(int tam){
         ArrayList<Produto> prod = new ArrayList<Produto>(tam);
+        int peso = 10;
         for(int i=0; i<tam; i++){
-            Produto novo = new Produto();
+            Produto novo = new Produto(peso);
             prod.add(novo);
+            peso+=10;
         }
         return prod;
     }
