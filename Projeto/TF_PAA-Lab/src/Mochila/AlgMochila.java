@@ -149,10 +149,7 @@ public class AlgMochila {
             for (int i = 1; i <= produtos.size(); i++) {
                 for (int j = 1; j <= capacidade; j++) {
                     if (produtos.get(i-1).getPeso() <= j)
-                        // This operation is used because a old combination value can be higher than the
-                        // new one value discovered
-                        matriz[i][j] = (int) Math.max(
-                                produtos.get(i-1).getValor() + matriz[i - 1][(int) (j - produtos.get(i-1).getPeso())],
+                        matriz[i][j] = Math.max(produtos.get(i - 1).getValor() + matriz[i - 1][(int) (j - produtos.get(i - 1).getPeso())],
                                 matriz[i - 1][j]);
                     else
                         matriz[i][j] = matriz[i - 1][j];
