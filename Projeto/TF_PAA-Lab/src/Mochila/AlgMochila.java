@@ -160,36 +160,31 @@ public class AlgMochila {
 
         Produto aux;
 
-       for (int i = 1; i <= linha; i++) {
+        for (int i = 1; i <= linha; i++) {
             for (int j = 1; j <= coluna; j++) {
                 aux = produtos.get(i);
 
                 if (aux.getPeso() <= pesosOrdenados.get(i)) {
                     if (aux.getPeso() == pesosOrdenados.get(i)) {
 
-                        if (aux.getValor() > matriz[i-1][j-1]) {
+                        if (aux.getValor() > matriz[i-1][j]) {
                             matriz[i][j] = aux.getValor();
                         } else {
-                            matriz[i][j] = matriz[i-1][j-1];
+                            matriz[i][j] = matriz[i-1][j];
                         }
                     } else {
-                        if()
+                        int descontoPeso = pesosOrdenados.get(i) - aux.getPeso();
+                        int colunaMochilaPassada = pesosOrdenados.indexOf(descontoPeso);
+                        //Realiza-se uma soma do valor do item atual com o valor contido na mochila contida em matriz[i-1][colunaMochilaPassada]
+                        float soma = aux.getValor()+matriz[i-1][colunaMochilaPassada];
+                        if(soma > matriz[i-1][j]){
+                            matriz[i][j] = soma;
+                        }
+
                     }
                 } else if (aux.getValor() > pesosOrdenados.get(i)) {
-                    matriz[i][j] = matriz[i-1][j-1];
+                    matriz[i][j] = matriz[i-1][j];
                 }
-
-                /*if (pesos[i - 1] <= j) {
-                    // max...
-                    if ((valores[i - 1] + matriz[i - 1][j - pesos[i - 1]]) > matriz[i - 1][j]) {
-                        matriz[i][j] = valores[i - 1] + matriz[i - 1][j - pesos[i - 1]];
-                    } else {
-                        matriz[i][j] = matriz[i - 1][j];
-                    }
-                } else {
-                    matriz[i][j] = matriz[i - 1][j]; // wi > j
-                }*/
-
             }
         }
         // retorna o valor máximo colocado na mochila
