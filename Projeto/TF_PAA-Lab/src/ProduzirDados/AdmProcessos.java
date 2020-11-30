@@ -15,7 +15,7 @@ public class AdmProcessos {
 
     static Random sorteio = new Random(42);
 
-    static java.util.List<Point> geraPontos(int quantPontos){
+    public static java.util.List<Point> geraPontos(int quantPontos){
         java.util.List<Point> pontos = new ArrayList<Point>(quantPontos);
         for(int i=0; i<quantPontos; i++){
             pontos.add(new Point(sorteio.nextInt(TOTALPONTOS), sorteio.nextInt(TOTALPONTOS)));
@@ -23,8 +23,8 @@ public class AdmProcessos {
 
         Point x = new Point(1000,1000);
         Point y = new Point(1001,1001);
-        pontos.set(TOTALPONTOS/2, x);
-        pontos.set(TOTALPONTOS/2 + 1, y);
+        pontos.set(quantPontos/2, x);
+        pontos.set(quantPontos/2 + 1, y);
 
         return pontos;
     }

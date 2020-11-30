@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Artefatos/Gerador"/>
+	<classpathentry kind="src" path="Projeto/TF_PAA-Lab/src"/>
+	<classpathentry kind="output" path="Projeto/out/production/Projeto"/>
+</classpath>
