@@ -147,18 +147,14 @@ public class AlgMochila {
         int coluna = pesosOrdenados.size();
 
         // tabela que será preenchida
-        Object[][] matriz = new Object[linha + 1][coluna];
+        float[][] matriz = new float[linha + 1][coluna];
 
         // inicializando a primeira linha e primeira coluna com 0
         for (int j = 0; j < coluna; j++) {
-            List<Object> mochila = new ArrayList<>();
-            mochila.add(0);
-            matriz[0][j] = mochila;
+            matriz[0][j] = 0;
         }
 
         for (int i = 1; i <= linha; i++) {
-            List<Object> mochila = new ArrayList<>();
-            mochila.add(0);
             matriz[i][0] = 0;
         }
 
@@ -168,17 +164,19 @@ public class AlgMochila {
             for (int j = 1; j <= coluna; j++) {
                 aux = produtos.get(i);
 
-                List<Object> temp = (List<Object>) matriz[i-1][j-1];
-                float valorMochila = (float) temp.get(temp.size() - 1);
-
                 if (aux.getPeso() <= pesosOrdenados.get(i)) {
                     if (aux.getPeso() == pesosOrdenados.get(i)) {
-                        if (aux.getValor() > valorMochila) {
-                            matriz[i][j] =
+
+                        if (aux.getValor() > matriz[i-1][j-1]) {
+                            matriz[i][j] = aux.getValor();
+                        } else {
+                            matriz[i][j] = matriz[i-1][j-1];
                         }
+                    } else {
+                        if()
                     }
-                } else (aux.getValor() > valorMochila) {
-                    matriz[i][j] = temp;
+                } else if (aux.getValor() > pesosOrdenados.get(i)) {
+                    matriz[i][j] = matriz[i-1][j-1];
                 }
 
                 /*if (pesos[i - 1] <= j) {
