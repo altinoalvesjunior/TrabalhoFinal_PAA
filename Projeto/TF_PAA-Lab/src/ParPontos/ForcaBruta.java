@@ -19,7 +19,7 @@ public class ForcaBruta {
 	
 	public static void main(String[] args){            
 		
-		List<Point> pontos = new ArrayList<>(AdmProcessos.geraPontos(100));  
+		List<Point> pontos = new ArrayList<>(AdmProcessos.geraPontos(1000));  
 		List <Point> aux = new ArrayList<>();
 		for (Point a:pontos) {
 			for (Point b:pontos) {
