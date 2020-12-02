@@ -1,0 +1,15 @@
+Par de Ponto: força bruta
+Foram inicializadas 3 variáveis na classe:
+.static double minDistance = 9999999;
+.static Point p1;
+.static Point p2;
+Com o início do programa, 2200 pontos são criados e adicionados em um ArrayList do tipo
+Point.
+É criado outro array do tipo Point onde alguns pontos serão adicionados para evitar repetições
+O algorítmo cria um for passandos por todos os pontos dentro de outro for que realiza a mesma função.
+Caso os pontos sejam diferentes e o cálculo entre eles não tenha sido realizado antes o algorítmo continua
+Se a distancia entre eles for menor que a varíavel minDistance, essa variavel recebe como valor a distancia entre os pontos
+e os pontos p1 e p2 recebem o valor dos pontos.
+O ponto a (do primeiro for) é armazenado no ArrayList auxiliar para evitar repetições : Distancia entre (a,b) é a mesma do que (b,a)
+no final é exibido o valor de minDistance ,p1 e p2;
+O algorítmo é capaz de calcular 2200 pontos em menos de 5 minutos.

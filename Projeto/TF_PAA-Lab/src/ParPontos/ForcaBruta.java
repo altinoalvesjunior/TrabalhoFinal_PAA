@@ -17,9 +17,10 @@ public class ForcaBruta {
 		return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));				
 	}
 	
-	public static void main(String[] args){            
+	public static void main(String[] args){        
+		System.out.println("start");
 		
-		List<Point> pontos = new ArrayList<>(AdmProcessos.geraPontos(1000));  
+		List<Point> pontos = new ArrayList<>(AdmProcessos.geraPontos(2200));  
 		List <Point> aux = new ArrayList<>();
 		for (Point a:pontos) {
 			for (Point b:pontos) {
