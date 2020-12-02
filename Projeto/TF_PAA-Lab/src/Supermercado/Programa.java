@@ -10,71 +10,49 @@ import java.util.Scanner;
 public class Programa {
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
+        Metodo mercado = new Metodo();
         AdmProcessos admDados = new AdmProcessos();
 
-        System.out.println("Digite o orçamento: ");
-        double orcamento = sc.nextInt();
+        int op;
 
-        List<Produto> produtos = admDados.geraProduto(10);
-        int peso = admDados.criarCapacidade(produtos,8);
+        do {
+            System.out.println("\n\t------------ P3 - Lista Supermercado ------------");
+            System.out.print("Digite o orçamento: ");
+            double orcamento = sc.nextInt();
 
-        System.out.println("Produtos: " + produtos);
-        System.out.println("Peso: " + peso);
-        System.out.println("Orçamento inicial: " + orcamento);
+            List<Produto> produtos = admDados.geraProduto(10);
+            int peso = admDados.criarCapacidade(produtos, 8);
 
-        List<Produto> supermercado = gulosoSupermercado(peso, produtos, orcamento);
-        //System.out.println(supermercado);
+            System.out.println("Produtos Disponíveis: ");
+            for (int i = 0; i < produtos.size() - 1; i++) {
+                Produto produto = (Produto) produtos.get(i);
+                System.out.println(produto.toString());
+            }
 
-        for(int i=0; i< supermercado.size()-1; i++){
-            Produto produto = (Produto) supermercado.get(i);
-            System.out.println(produto.toString());
-        }
+            System.out.println();
+            System.out.println("Peso: " + peso);
+            System.out.println("Orçamento inicial: " + orcamento);
 
-        System.out.println("Valor total da compra: " + supermercado.get(supermercado.size()-1));
+            List<Produto> supermercado = mercado.gulosoSupermercado(peso, produtos, orcamento);
+
+            System.out.println("Produtos adicionados na Lista: ");
+            for (int i = 0; i < supermercado.size() - 1; i++) {
+                Produto produto = (Produto) supermercado.get(i);
+                System.out.println(produto.toString());
+            }
+
+            System.out.println("Valor total da compra: " + supermercado.get(supermercado.size() - 1));
+
+            System.out.println("---------------------------------------------------");
+            System.out.print("Deseja executar novamente? \n 1 - Sim \n 2 - Não \n\nEscolha: ");
+            op = sc.nextInt();
+            sc.nextLine();
+        } while(op != 2);
+
+        System.out.println("Saindo do programa!");
 
         sc.close();
-
-    }
-
-    public static List gulosoSupermercado(int pesoMaximo, List<Produto> produtos, double orcamento) {
-
-        // mochila final
-        List<Object> mochila = new ArrayList<>(); // Só irá receber os produtos definitivos
-        List<Produto> aux = new ArrayList<>();
-        aux.addAll(produtos);// criando uma lista auxilar (cópia da lista oficial de produtos) para poder sofrer alterações
-
-        Produto menorValor; // armazena o produto que armazena o menor valor no momento
-        Produto temp;
-        int pesoMochila = 0;
-        float valorMochila = 0;
-        double contadorOrcamento = 0;
-
-        while (pesoMochila < pesoMaximo && aux.size() >= 0 && contadorOrcamento < orcamento) {
-            menorValor = aux.get(0);
-
-            for (int i = 0; i < aux.size(); i++) {
-                temp = aux.get(i);
-
-                if (temp.getValor() < menorValor.getValor()) {
-                    menorValor = temp;
-                }
-            }
-
-            pesoMochila += menorValor.getPeso();
-            contadorOrcamento += menorValor.getValor();
-            aux.remove(menorValor);
-
-            if (pesoMochila < pesoMaximo && contadorOrcamento < orcamento) {
-                mochila.add(menorValor);
-                valorMochila += menorValor.getValor();
-                //contadorOrcamento += menorValor.getValor();
-            }
-        }
-
-        mochila.add(valorMochila);
-        return mochila;
     }
 }
